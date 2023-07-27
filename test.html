@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="container">
+    <div id="empty-div"></div>
+    <div id="content-container">
+      <div class="movable"></div>
+      <div class="movable"></div>
+      <div class="movable"></div>
+      <div class="movable"></div>
+      <div class="movable"></div>
+      <div class="movable"></div>
+    </div>
+  </div>
+
+  <style>
+    #container {
+      position: relative;
+      height: 500px;
+      width: 500px;
+      background-color: lightgray;
+      margin: 50px;
+    }
+
+    #content-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      outline: 2px dashed red;
+    }
+
+    #empty-div {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      outline: 2px dashed green;
+    }
+
+    .movable {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: cornflowerblue;
+      outline: 2px solid blue;
+    }
+  </style>
+
+  <script>
+    let container = document.getElementById('container');
+    let contentContainer = document.getElementById('content-container');
+    let movables = document.getElementsByClassName('movable');
+
+    let isDragging = false;
+    let offset = { x: 0, y: 0 };
+    let activeMovable;
+
+    for (let i = 0; i < movables.length; i++) {
+      movables[i].addEventListener('mousedown', startDragging);
+    }
+
+    function startDragging(e) {
+      e.preventDefault();
+      isDragging = true;
+      activeMovable = this;
+      offset.x = e.clientX - activeMovable.offsetLeft;
+      offset.y = e.clientY - activeMovable.offsetTop;
+    }
+
+    document.addEventListener('mousemove', moveMovable);
+    document.addEventListener('mouseup', stopDragging);
+
+    function moveMovable(e) {
+      e.preventDefault();
+      if (!isDragging) return;
+
+      let x = e.clientX - container.getBoundingClientRect().left - offset.x;
+      let y = e.clientY - container.getBoundingClientRect().top - offset.y;
+
+      let maxX = contentContainer.clientWidth - activeMovable.offsetWidth;
+      let maxY = contentContainer.clientHeight - activeMovable.offsetHeight;
+
+      x = Math.max(0, Math.min(x, maxX));
+      y = Math.max(0, Math.min(y, maxY));
+
+      activeMovable.style.left = x + 'px';
+      activeMovable.style.top = y + 'px';
+    }
+
+    function stopDragging() {
+      isDragging = false;
+      activeMovable = null;
+    }
+  </script>
+</body>
+
+</html>

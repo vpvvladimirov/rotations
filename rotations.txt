@@ -1,0 +1,32 @@
+Outside Hitter 1:
+  - stronger attack;
+  - weaker defence;
+  - 2 rotations front row;
+  - 1 rotation back row;
+
+Outside Hitter 2:
+  - weaker attack;
+  - stronger defence;
+  - 2 rotations back row;
+  - 1 rotation front row;
+
+Middle 1:
+  - closer to the setter;
+  - stronger attack;
+  - 2 rotations front row;
+
+Middle 2:
+  - furthest from the setter;
+  - 1 rotation front row;
+
+ROTATIONS:
+Rotation 1:
+  OH1:
+    - in front of S;
+    - between M2 and sideline;
+  M1:
+    - behind M2;
+    - between S and H2;
+  OP:
+    - in front of H2;
+    - between sideline and M2;
